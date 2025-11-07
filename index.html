@@ -199,6 +199,15 @@
                 overflow-wrap: break-word;
                 word-wrap: break-word;
             }
+
+            /* Hide scrollbar for mobile testimonials */
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
         </style>
     </head>
     <body class="bg-white font-inter text-brand-dark antialiased">
@@ -843,8 +852,135 @@
                             <p class="text-sm sm:text-base md:text-lg text-brand-gray" data-aos="fade-up" data-aos-delay="200">See how AI-powered recommendations helped users achieve their financial dreams</p>
                         </div>
 
-                        <!-- Testimonials Carousel -->
-                        <div class="relative max-w-4xl mx-auto px-4 sm:px-4" data-aos="fade-up" data-aos-delay="300">
+                        <!-- Testimonials Section: Desktop Carousel / Mobile Scroll -->
+                        <!-- Mobile: Horizontal Scroll -->
+                        <div class="md:hidden overflow-x-auto pb-4 px-4 -mx-4 scrollbar-hide" data-aos="fade-up" data-aos-delay="300" style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+                            <div class="flex gap-4 px-4">
+                                <!-- Testimonial 1 -->
+                                <div class="bg-white rounded-2xl p-6 shadow-xl min-w-[85vw] flex-shrink-0" style="scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">SJ</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">Sarah & James</h4>
+                                            <p class="text-xs text-brand-gray">First-Time Homebuyers</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+127 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Rejected twice for our mortgage. CreditGuard's AI fixed our score—now we own our dream home!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-house"></i>
+                                        <span>Purchased $450K home</span>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 2 -->
+                                <div class="bg-white rounded-2xl p-6 shadow-xl min-w-[85vw] flex-shrink-0" style="scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">MR</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">Marcus Rodriguez</h4>
+                                            <p class="text-xs text-brand-gray">Small Business Owner</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+89 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Needed a work truck but my credit held me back. Smart Actions showed me what to fix. Got 3.9% APR and saved $4,000!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-truck"></i>
+                                        <span>Saved $4,000 on auto loan</span>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 3 -->
+                                <div class="bg-white rounded-2xl p-6 shadow-xl min-w-[85vw] flex-shrink-0" style="scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">EP</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">Emily Peterson</h4>
+                                            <p class="text-xs text-brand-gray">Marketing Manager</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+73 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Stuck with high-interest cards. AI recommended becoming an authorized user. Now I have a premium card with 0% APR!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                        <span>Qualified for premium card</span>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 4 -->
+                                <div class="bg-white rounded-2xl p-6 shadow-xl min-w-[85vw] flex-shrink-0" style="scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">DL</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">David & Lisa Chen</h4>
+                                            <p class="text-xs text-brand-gray">Homeowners</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+102 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Wanted to refinance our mortgage. Smart Actions helped us optimize everything. Now saving $380/month!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                                        <span>Saving $4,560/year</span>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 5 -->
+                                <div class="bg-white rounded-2xl p-6 shadow-xl min-w-[85vw] flex-shrink-0" style="scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">AK</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">Aisha Kumar</h4>
+                                            <p class="text-xs text-brand-gray">Recent Graduate</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+95 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Starting my career with student loans was stressful. CreditGuard set up auto-pay and recommended a secured card. Building great credit now!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-graduation-cap"></i>
+                                        <span>Building strong credit foundation</span>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 6 -->
+                                <div class="bg-white rounded-2xl p-6 shadow-xl min-w-[85vw] flex-shrink-0" style="scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">TW</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">Thomas Williams</h4>
+                                            <p class="text-xs text-brand-gray">Entrepreneur</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+143 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Needed capital to expand my restaurant. CreditGuard's AI helped me secure a $150K SBA loan. Second location opens next month!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-store"></i>
+                                        <span>Secured $150K business loan</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="md:hidden text-center text-sm text-brand-gray mt-2">👉 Swipe to see more stories</p>
+
+                        <!-- Desktop: Carousel -->
+                        <div class="hidden md:block relative max-w-4xl mx-auto px-4" data-aos="fade-up" data-aos-delay="300">
                             <div class="testimonials-container overflow-hidden">
                                 <div id="testimonials-track" class="flex transition-transform duration-500 ease-in-out">
 
@@ -1464,7 +1600,7 @@
                     // Responsive margins based on screen size
                     const isMobile = window.innerWidth < 640;
                     const margins = isMobile
-                        ? { t: 10, r: 10, b: 60, l: 40 }
+                        ? { t: 10, r: 10, b: 70, l: 45 }
                         : { t: 20, r: 20, b: 80, l: 50 };
 
                     const layout = {
@@ -1472,8 +1608,9 @@
                             gridcolor: '#E8ECF2',
                             zeroline: false,
                             tickfont: {
-                                size: isMobile ? 10 : 12
-                            }
+                                size: isMobile ? 9 : 12
+                            },
+                            tickangle: isMobile ? -45 : 0
                         },
                         yaxis: {
                             title: isMobile ? '' : 'Credit Score',
