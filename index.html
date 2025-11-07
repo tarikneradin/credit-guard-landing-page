@@ -702,7 +702,7 @@
                                         <i class="fa-solid fa-arrow-right-long text-brand-green text-base sm:text-xl"></i>
                                         <div class="text-right">
                                             <p class="text-xs text-brand-green">Predicted</p>
-                                            <p class="text-xl sm:text-2xl font-bold text-brand-green">768</p>
+                                            <p class="text-xl sm:text-2xl font-bold text-brand-green">799</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1558,9 +1558,17 @@
             // Plotly Chart for Score Prediction
             window.addEventListener('load', function() {
                 try {
-                    const months = ['Now', 'Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'];
+                    // Get current month and next 6 months
+                    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    const today = new Date();
+                    const months = [];
+                    for (let i = 0; i < 7; i++) {
+                        const monthDate = new Date(today.getFullYear(), today.getMonth() + i, 1);
+                        months.push(monthNames[monthDate.getMonth()]);
+                    }
+
                     const currentTrend = [742, 740, 745, 743, 748, 750, 752];
-                    const predictedTrend = [742, 748, 755, 760, 762, 765, 768];
+                    const predictedTrend = [742, 752, 763, 774, 783, 791, 799];
 
                     const trace1 = {
                         x: months,
@@ -1616,7 +1624,7 @@
                         },
                         yaxis: {
                             title: isMobile ? '' : 'Credit Score',
-                            range: [720, 780],
+                            range: [720, 820],
                             gridcolor: '#E8ECF2',
                             zeroline: false,
                             tickfont: {
