@@ -1,0 +1,64 @@
+name: 📝 PR Quality Check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  pr-validation:
+    name: 🔍 PR Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 📝 Validate PR Title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            test
+            chore
+            ci
+          requireScope: false
+          ignoreLabels: |
+            bot
+            ignore-semantic-pull-request
+
+      - name: 📊 Check PR Size
+        run: |
+          files_changed=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | wc -l)
+          lines_added=$(git diff --stat origin/${{ github.base_ref }}...HEAD | tail -1 | awk '{print $4}' | sed 's/+//')
+
+          echo "Files changed: $files_changed"
+          echo "Lines added: $lines_added"
+
+          if [ "$files_changed" -gt 50 ]; then
+            echo "⚠️ Large PR detected: $files_changed files changed"
+            echo "Consider breaking this into smaller PRs"
+          fi
+
+          if [ "$lines_added" -gt 1000 ]; then
+            echo "⚠️ Large PR detected: $lines_added lines added"
+            echo "Consider breaking this into smaller PRs"
+          fi
+
+      - name: 🏷️ Check Required Labels
+        uses: mheap/github-action-required-labels@v5
+        with:
+          mode: minimum
+          count: 1
+          labels: "bug, enhancement, documentation, refactor, testing, dependencies"
+          add_comment: true
+
+      - name: ✅ PR Validation Complete
+        run: echo "🎉 PR validation completed successfully!"

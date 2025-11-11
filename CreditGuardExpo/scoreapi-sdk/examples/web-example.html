@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScoreAPI SDK - Web Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    .section {
+      margin: 20px 0;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    input {
+      padding: 8px;
+      margin: 5px;
+      width: 200px;
+    }
+    .result {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 3px;
+      white-space: pre-wrap;
+    }
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+  <h1>ScoreAPI SDK - Web Example</h1>
+
+  <!-- Login Section -->
+  <div class="section">
+    <h2>1. User Login</h2>
+    <input type="email" id="username" placeholder="Email" value="user@example.com">
+    <input type="password" id="password" placeholder="Password" value="password123">
+    <button onclick="login()">Login</button>
+    <div id="loginResult" class="result" style="display:none;"></div>
+  </div>
+
+  <!-- Profile Section -->
+  <div class="section">
+    <h2>2. Get User Profile</h2>
+    <button onclick="getProfile()">Get Profile</button>
+    <div id="profileResult" class="result" style="display:none;"></div>
+  </div>
+
+  <!-- Credit Score Section -->
+  <div class="section">
+    <h2>3. Get Credit Score</h2>
+    <button onclick="getScore()">Get Latest Score</button>
+    <button onclick="getScoreHistory()">Get Score History</button>
+    <div id="scoreResult" class="result" style="display:none;"></div>
+  </div>
+
+  <!-- Credit Report Section -->
+  <div class="section">
+    <h2>4. Get Credit Report</h2>
+    <button onclick="getReport()">Get Latest Report</button>
+    <button onclick="getReportSummary()">Get Report Summary</button>
+    <div id="reportResult" class="result" style="display:none;"></div>
+  </div>
+
+  <!-- Alerts Section -->
+  <div class="section">
+    <h2>5. Get Alerts</h2>
+    <button onclick="getAlerts()">Get All Alerts</button>
+    <div id="alertsResult" class="result" style="display:none;"></div>
+  </div>
+
+  <!-- Logout Section -->
+  <div class="section">
+    <h2>6. Logout</h2>
+    <button onclick="logout()">Logout</button>
+    <div id="logoutResult" class="result" style="display:none;"></div>
+  </div>
+
+  <!-- Include SDK from CDN or local build -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../dist/index.umd.js"></script>
+
+  <script>
+    // Initialize SDK
+    const client = new ScoreAPISDK.ScoreAPIClient({
+      baseURL: 'https://api.stitchcredit.com',
+      customerToken: 'your-customer-token',
+      storage: 'localStorage'
+    });
+
+    // Helper to display results
+    function displayResult(elementId, data, isError = false) {
+      const element = document.getElementById(elementId);
+      element.style.display = 'block';
+      element.className = isError ? 'result error' : 'result';
+      element.textContent = JSON.stringify(data, null, 2);
+    }
+
+    // Login
+    async function login() {
+      try {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const response = await client.auth.userLogin({ username, password });
+        displayResult('loginResult', {
+          message: 'Login successful!',
+          user: response.user
+        });
+      } catch (error) {
+        displayResult('loginResult', {
+          error: error.message,
+          code: error.code
+        }, true);
+      }
+    }
+
+    // Get Profile
+    async function getProfile() {
+      try {
+        const profile = await client.user.getProfile();
+        displayResult('profileResult', profile);
+      } catch (error) {
+        displayResult('profileResult', {
+          error: error.message,
+          code: error.code
+        }, true);
+      }
+    }
+
+    // Get Credit Score
+    async function getScore() {
+      try {
+        const scores = await client.score.getLatestScores();
+        displayResult('scoreResult', scores);
+      } catch (error) {
+        displayResult('scoreResult', {
+          error: error.message,
+          code: error.code
+        }, true);
+      }
+    }
+
+    // Get Score History
+    async function getScoreHistory() {
+      try {
+        const history = await client.score.getScoreHistory();
+        displayResult('scoreResult', history);
+      } catch (error) {
+        displayResult('scoreResult', {
+          error: error.message,
+          code: error.code
+        }, true);
+      }
+    }
+
+    // Get Credit Report
+    async function getReport() {
+      try {
+        const report = await client.report.getLatestReport();
+        displayResult('reportResult', report);
+      } catch (error) {
+        displayResult('reportResult', {
+          error: error.message,
+          code: error.code
+        }, true);
+      }
+    }
+
+    // Get Report Summary
+    async function getReportSummary() {
+      try {
+        const summary = await client.report.getLatestReportSummary();
+        displayResult('reportResult', summary);
+      } catch (error) {
+        displayResult('reportResult', {
+          error: error.message,
+          code: error.code
+        }, true);
+      }
+    }
+
+    // Get Alerts
+    async function getAlerts() {
+      try {
+        const alerts = await client.alerts.getAlerts();
+        displayResult('alertsResult', alerts);
+      } catch (error) {
+        displayResult('alertsResult', {
+          error: error.message,
+          code: error.code
+        }, true);
+      }
+    }
+
+    // Logout
+    async function logout() {
+      try {
+        await client.auth.logout();
+        displayResult('logoutResult', { message: 'Logged out successfully!' });
+      } catch (error) {
+        displayResult('logoutResult', {
+          error: error.message,
+          code: error.code
+        }, true);
+      }
+    }
+  </script>
+</body>
+</html>

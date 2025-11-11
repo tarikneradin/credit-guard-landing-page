@@ -1,0 +1,73 @@
+{
+  "name": "@stitchcredit/scoreapi-sdk",
+  "version": "1.0.0",
+  "description": "JavaScript/TypeScript SDK for ScoreAPI client integration (mobile and web)",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "scoreapi",
+    "credit-score",
+    "credit-monitoring",
+    "equifax",
+    "sdk",
+    "typescript",
+    "javascript",
+    "mobile",
+    "react-native"
+  ],
+  "author": "StitchCredit",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stitchcredit/scoreapi-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/stitchcredit/scoreapi-sdk/issues"
+  },
+  "homepage": "https://github.com/stitchcredit/scoreapi-sdk#readme",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "prettier": "^3.0.0",
+    "rollup": "^4.0.0",
+    "rollup-plugin-dts": "^6.0.0",
+    "ts-jest": "^29.1.0",
+    "tslib": "^2.6.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@react-native-async-storage/async-storage": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@react-native-async-storage/async-storage": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.expo/
+.expo-shared/
+
+# SDK folder (has its own eslint config)
+scoreapi-sdk/
+
+# Generated files
+*.generated.ts
+*.generated.js
+
+# Coverage
+coverage/
+
+# Metro
+.metro-health-check*

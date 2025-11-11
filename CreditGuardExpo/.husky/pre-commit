@@ -1,0 +1,15 @@
+#!/bin/sh
+echo "🔍 Running pre-commit checks..."
+
+# Run lint-staged to check only staged files
+npm run pre-commit
+
+# If lint-staged fails, show helpful message
+if [ $? -ne 0 ]; then
+  echo "❌ Pre-commit checks failed!"
+  echo "💡 Run 'npm run fix' to automatically fix formatting and linting issues"
+  echo "💡 Run 'npm run validate' to check all quality gates"
+  exit 1
+fi
+
+echo "✅ Pre-commit checks passed!"

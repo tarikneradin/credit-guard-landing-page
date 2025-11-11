@@ -1,0 +1,125 @@
+name: 🔍 Code Quality & CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  quality-checks:
+    name: 🛡️ Quality Checks
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: 🔍 TypeScript Check
+        run: npm run type-check
+
+      - name: 🎨 ESLint Check
+        run: npm run lint
+
+      - name: 💅 Prettier Check
+        run: npm run format:check
+
+      - name: 🧪 Run Tests
+        run: npm run test:coverage
+
+      - name: 📊 Upload Coverage Reports
+        if: matrix.node-version == '20.x'
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+
+      - name: ✅ All Checks Passed
+        run: echo "🎉 All quality checks passed successfully!"
+
+  security-check:
+    name: 🔒 Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: 🔒 Security Audit
+        run: npm audit --audit-level=moderate
+
+      - name: 🛡️ License Check
+        run: npx license-checker --production --onlyAllow="MIT;ISC;Apache-2.0;BSD-2-Clause;BSD-3-Clause"
+        continue-on-error: true
+
+  build-check:
+    name: 🏗️ Build Check
+    runs-on: ubuntu-latest
+    needs: [quality-checks]
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: 🔧 Setup Expo CLI
+        run: npm install -g @expo/cli
+
+      - name: 🏗️ Check Expo Build
+        run: npx expo export --platform web
+        continue-on-error: true
+
+      - name: ✅ Build Check Complete
+        run: echo "🎉 Build check completed!"
+
+  notify-status:
+    name: 📢 Notify Status
+    runs-on: ubuntu-latest
+    needs: [quality-checks, security-check, build-check]
+    if: always()
+
+    steps:
+      - name: 🎉 Success Notification
+        if: ${{ needs.quality-checks.result == 'success' && needs.security-check.result == 'success' }}
+        run: |
+          echo "✅ All CI checks passed!"
+          echo "🚀 Code is ready for deployment"
+
+      - name: ❌ Failure Notification
+        if: ${{ needs.quality-checks.result == 'failure' || needs.security-check.result == 'failure' }}
+        run: |
+          echo "❌ CI checks failed!"
+          echo "🔍 Please review the failing checks above"
+          echo "💡 Run 'npm run validate' locally to debug"
+          exit 1

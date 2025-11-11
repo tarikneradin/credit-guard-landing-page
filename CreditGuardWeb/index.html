@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CreditGuard - AI-powered credit monitoring and improvement platform. Get personalized insights, predictive scoring, and take control of your financial future.">
+    <meta name="keywords" content="credit score, credit monitoring, AI financial advisor, credit improvement, financial health">
+    <meta name="author" content="CreditGuard">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="CreditGuard - Your AI-Powered Credit Co-Pilot">
+    <meta property="og:description" content="Unlock your best credit score with AI-powered insights and personalized action plans.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://storage.googleapis.com/uxpilot-auth.appspot.com/754b1445af-038c6781d179837b3ada.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CreditGuard - Your AI-Powered Credit Co-Pilot">
+    <meta name="twitter:description" content="Unlock your best credit score with AI-powered insights and personalized action plans.">
+
+    <title>CreditGuard - AI-Powered Credit Monitoring & Improvement Platform</title>
+
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <script>window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Plotly for Charts -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            inter: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        },
+                        colors: {
+                            'brand-purple': '#6D4BFF',
+                            'brand-blue': '#4A8CFF',
+                            'brand-green': '#34C759',
+                            'brand-orange': '#FF9500',
+                            'brand-red': '#FF3B30',
+                            'brand-dark': '#1D1D1F',
+                            'brand-gray': {
+                                DEFAULT: '#6E6E73',
+                                100: '#F9FAFB',
+                                200: '#F5F5F7',
+                                300: '#E5E5EA',
+                                400: '#6E6E73',
+                            },
+                            'brand-surface': '#F5F5F7',
+                            'brand-light-blue': '#F5F8FF',
+                        }
+                    }
+                }
+            }
+        </script>
+        <style>
+            /* Custom Scrollbar */
+            ::-webkit-scrollbar {
+                width: 10px;
+            }
+            ::-webkit-scrollbar-track {
+                background: #F5F5F7;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #6D4BFF;
+                border-radius: 5px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #5538CC;
+            }
+
+            /* Smooth Scrolling */
+            html {
+                scroll-behavior: smooth;
+            }
+
+            /* Custom Animations */
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-20px); }
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+
+            @keyframes gradient-shift {
+                0%, 100% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+            }
+            .animate-gradient {
+                background-size: 200% 200%;
+                animation: gradient-shift 8s ease infinite;
+            }
+
+            /* Glass Morphism Effect */
+            .glass-effect {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            /* Parallax Effect */
+            .parallax {
+                transform-style: preserve-3d;
+            }
+
+            /* Mobile Optimizations */
+            @media (max-width: 768px) {
+                /* Reduce hero title size on mobile */
+                h1 {
+                    font-size: 2rem !important;
+                    line-height: 1.2 !important;
+                }
+
+                /* Better button sizing on mobile */
+                .mobile-btn {
+                    padding: 0.75rem 1.5rem !important;
+                    font-size: 0.875rem !important;
+                }
+
+                /* Testimonial carousel mobile fixes */
+                .testimonials-container {
+                    padding-left: 1rem !important;
+                    padding-right: 1rem !important;
+                }
+
+                /* Better spacing on mobile */
+                section {
+                    padding-top: 3rem !important;
+                    padding-bottom: 3rem !important;
+                }
+
+                /* Trust indicators stack vertically */
+                .trust-indicators {
+                    flex-direction: column;
+                    gap: 1rem !important;
+                }
+
+                /* Navigation arrows smaller on mobile */
+                #prev-testimonial, #next-testimonial {
+                    width: 2.5rem !important;
+                    height: 2.5rem !important;
+                    font-size: 0.875rem;
+                }
+
+                /* Financial goals cards better spacing */
+                .financial-goal-card {
+                    padding: 1.5rem !important;
+                }
+
+                /* Hero image container mobile padding */
+                #hero-image-container {
+                    margin-top: 2rem !important;
+                }
+            }
+
+            @media (max-width: 640px) {
+                /* Extra small screens */
+                h2 {
+                    font-size: 1.75rem !important;
+                }
+
+                /* Better mobile menu */
+                #mobile-menu {
+                    max-height: calc(100vh - 80px);
+                    overflow-y: auto;
+                }
+
+                /* Pricing cards full width on mobile */
+                .pricing-card {
+                    max-width: 100% !important;
+                }
+            }
+
+            /* Touch-friendly button sizes */
+            @media (hover: none) and (pointer: coarse) {
+                button, a {
+                    min-height: 44px;
+                    min-width: 44px;
+                }
+            }
+
+            /* Prevent text overflow on small screens */
+            * {
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+            }
+
+            /* Hide scrollbar for mobile testimonials */
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        </style>
+    </head>
+    <body class="bg-white font-inter text-brand-dark antialiased">
+        <div id="page-container" class="relative">
+            <!-- Header -->
+            <header id="header" class="bg-white/95 backdrop-blur-lg sticky top-0 z-50 border-b border-brand-gray-200/50 shadow-sm">
+                <nav class="container mx-auto px-6 py-4">
+                    <div class="flex items-center justify-between">
+                        <a href="#" class="flex items-center space-x-2 group">
+                            <span class="bg-gradient-to-br from-brand-purple to-brand-blue rounded-lg p-2 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-shield-halved text-white text-xl"></i>
+                            </span>
+                            <span class="text-xl font-bold text-brand-dark">CreditGuard</span>
+                        </a>
+                        <div class="hidden lg:flex items-center space-x-8">
+                            <a href="#mobile-app-download" class="text-brand-gray-400 hover:text-brand-purple transition-colors font-medium">Download App</a>
+                            <a href="#features" class="text-brand-gray-400 hover:text-brand-purple transition-colors font-medium">Features</a>
+                            <a href="#pricing" class="text-brand-gray-400 hover:text-brand-purple transition-colors font-medium">Pricing</a>
+                            <a href="#testimonials" class="text-brand-gray-400 hover:text-brand-purple transition-colors font-medium">Success Stories</a>
+                            <a href="#faq" class="text-brand-gray-400 hover:text-brand-purple transition-colors font-medium">FAQ</a>
+                        </div>
+                        <div class="flex items-center space-x-2 sm:space-x-4">
+                            <a href="#" class="hidden sm:block text-brand-dark font-medium hover:text-brand-purple transition-colors">Log In</a>
+                            <a href="#" class="bg-brand-purple hover:bg-opacity-90 text-white font-semibold px-3 py-2 sm:px-6 sm:py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all text-sm sm:text-base whitespace-nowrap">Get Started</a>
+                            <button id="mobile-menu-btn" class="lg:hidden text-brand-dark p-2 ml-2">
+                                <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-brand-gray-200 shadow-lg">
+                    <div class="container mx-auto px-6 py-6 flex flex-col space-y-4">
+                        <a href="#mobile-app-download" class="mobile-menu-link text-brand-gray-400 hover:text-brand-purple transition-colors font-medium py-2 border-b border-gray-100">Download App</a>
+                        <a href="#features" class="mobile-menu-link text-brand-gray-400 hover:text-brand-purple transition-colors font-medium py-2 border-b border-gray-100">Features</a>
+                        <a href="#pricing" class="mobile-menu-link text-brand-gray-400 hover:text-brand-purple transition-colors font-medium py-2 border-b border-gray-100">Pricing</a>
+                        <a href="#testimonials" class="mobile-menu-link text-brand-gray-400 hover:text-brand-purple transition-colors font-medium py-2 border-b border-gray-100">Success Stories</a>
+                        <a href="#faq" class="mobile-menu-link text-brand-gray-400 hover:text-brand-purple transition-colors font-medium py-2 border-b border-gray-100">FAQ</a>
+                        <a href="#" class="mobile-menu-link text-brand-dark font-medium hover:text-brand-purple transition-colors py-2 sm:hidden">Log In</a>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <!-- Hero Section -->
+                <section id="hero-section" class="relative py-20 md:py-28 bg-gradient-to-br from-white via-brand-light-blue to-white overflow-hidden">
+                    <!-- Animated Background Elements -->
+                    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-200/10 rounded-full blur-3xl animate-float"></div>
+                        <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
+                    </div>
+
+                    <div class="container mx-auto px-6 text-center relative z-10">
+                        <div class="max-w-4xl mx-auto">
+                            <span class="inline-block bg-gradient-to-r from-purple-100 to-blue-100 text-brand-purple text-sm font-semibold px-5 py-2 rounded-full mb-6 border border-purple-200" data-aos="fade-down">
+                                <i class="fa-solid fa-sparkles mr-2"></i>Your Credit, Secured
+                            </span>
+                            <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-brand-dark leading-tight mb-6" data-aos="fade-up" data-aos-delay="100">
+                                Take Control of Your <span class="bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent">Credit Score</span>
+                            </h1>
+                            <p class="text-base sm:text-lg md:text-xl text-brand-gray mb-8 sm:mb-10 max-w-3xl mx-auto px-4" data-aos="fade-up" data-aos-delay="200">
+                                Monitor your credit, understand the factors, and take smart actions to reach your financial goals—all powered by AI.
+                            </p>
+                            <div class="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-4 w-full sm:w-auto px-4 sm:px-0" data-aos="fade-up" data-aos-delay="300">
+                                <a href="#mobile-app-download" class="inline-flex items-center justify-center gap-3 bg-black hover:bg-gray-900 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105 w-full sm:w-auto">
+                                    <i class="fa-brands fa-apple text-xl sm:text-2xl"></i>
+                                    <div class="text-left">
+                                        <div class="text-xs">Download on the</div>
+                                        <div class="text-sm sm:text-base font-bold leading-tight">App Store</div>
+                                    </div>
+                                </a>
+                                <a href="#mobile-app-download" class="inline-flex items-center justify-center gap-3 bg-black hover:bg-gray-900 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105 w-full sm:w-auto">
+                                    <i class="fa-brands fa-google-play text-xl sm:text-2xl"></i>
+                                    <div class="text-left">
+                                        <div class="text-xs">GET IT ON</div>
+                                        <div class="text-sm sm:text-base font-bold leading-tight">Google Play</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Trust Indicators -->
+                            <div class="mt-10 flex flex-wrap justify-center items-center gap-8 text-sm text-brand-gray" data-aos="fade-up" data-aos-delay="400">
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-check-circle text-brand-green text-lg"></i>
+                                    <span class="font-medium">100% Free Credit Monitoring</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-shield-check text-brand-green text-lg"></i>
+                                    <span class="font-medium">Bank-Level Security</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fa-solid fa-sparkles text-brand-purple text-lg"></i>
+                                    <span class="font-medium">AI-Powered Insights</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Hero Video -->
+                        <div id="hero-video-container" class="mt-12 sm:mt-16 w-full max-w-5xl mx-auto px-4 sm:px-0" data-aos="fade-up" data-aos-delay="500">
+                           <div class="h-auto overflow-hidden rounded-2xl shadow-2xl shadow-purple-200/50 border border-gray-200">
+                                <video class="w-full h-auto" controls playsinline>
+                                    <source src="Video_Revision_and_Generation.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                           </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Financial Goals / Use Cases Section -->
+                <section id="financial-goals" class="py-20 md:py-28 bg-gradient-to-br from-brand-purple/5 via-white to-brand-blue/5">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center max-w-4xl mx-auto mb-12 sm:mb-16 px-4">
+                            <span class="text-brand-purple font-semibold mb-2 block text-xs sm:text-sm uppercase tracking-wider" data-aos="fade-up">Your Credit Score Matters</span>
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-brand-dark mb-4 sm:mb-6" data-aos="fade-up" data-aos-delay="100">
+                                Want to Buy a House? Car? <br class="hidden sm:block"/>Student Loan?
+                            </h2>
+                            <p class="text-base sm:text-lg md:text-xl text-brand-gray leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                                <span class="font-bold text-brand-dark">Your credit score sucks?</span> Don't let bad credit hold you back from your dreams. CreditGuard's AI shows you exactly how to improve your score fast.
+                            </p>
+                        </div>
+
+                        <!-- Financial Goals Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
+                            <!-- Goal 1: Home Purchase -->
+                            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-brand-purple financial-goal-card" data-aos="fade-up" data-aos-delay="100">
+                                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                                    <i class="fa-solid fa-house text-white text-2xl sm:text-3xl"></i>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-bold text-brand-dark mb-2 sm:mb-3 text-center">Buy Your Dream Home</h3>
+                                <p class="text-sm sm:text-base text-brand-gray text-center mb-3 sm:mb-4">Get approved for better mortgage rates and save thousands</p>
+                                <div class="text-center">
+                                    <span class="inline-flex items-center gap-2 bg-green-50 text-brand-green text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full border border-green-200">
+                                        <i class="fa-solid fa-arrow-up"></i>
+                                        +127 avg. points
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Goal 2: Car Purchase -->
+                            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-brand-purple financial-goal-card" data-aos="fade-up" data-aos-delay="200">
+                                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                                    <i class="fa-solid fa-car text-white text-2xl sm:text-3xl"></i>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-bold text-brand-dark mb-2 sm:mb-3 text-center">Finance Your Car</h3>
+                                <p class="text-sm sm:text-base text-brand-gray text-center mb-3 sm:mb-4">Qualify for lower APR and save on your auto loan</p>
+                                <div class="text-center">
+                                    <span class="inline-flex items-center gap-2 bg-green-50 text-brand-green text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full border border-green-200">
+                                        <i class="fa-solid fa-arrow-up"></i>
+                                        +89 avg. points
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Goal 3: Student Loans -->
+                            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-brand-purple financial-goal-card" data-aos="fade-up" data-aos-delay="300">
+                                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                                    <i class="fa-solid fa-graduation-cap text-white text-2xl sm:text-3xl"></i>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-bold text-brand-dark mb-2 sm:mb-3 text-center">Refinance Student Loans</h3>
+                                <p class="text-sm sm:text-base text-brand-gray text-center mb-3 sm:mb-4">Lower your interest rates and monthly payments</p>
+                                <div class="text-center">
+                                    <span class="inline-flex items-center gap-2 bg-green-50 text-brand-green text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full border border-green-200">
+                                        <i class="fa-solid fa-arrow-up"></i>
+                                        +95 avg. points
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Goal 4: Credit Cards -->
+                            <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-brand-purple financial-goal-card" data-aos="fade-up" data-aos-delay="400">
+                                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                                    <i class="fa-solid fa-credit-card text-white text-2xl sm:text-3xl"></i>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-bold text-brand-dark mb-2 sm:mb-3 text-center">Get Premium Cards</h3>
+                                <p class="text-sm sm:text-base text-brand-gray text-center mb-3 sm:mb-4">Qualify for rewards cards with better benefits</p>
+                                <div class="text-center">
+                                    <span class="inline-flex items-center gap-2 bg-green-50 text-brand-green text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full border border-green-200">
+                                        <i class="fa-solid fa-arrow-up"></i>
+                                        +73 avg. points
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- How We Help CTA -->
+                        <div class="max-w-3xl mx-auto bg-gradient-to-r from-brand-purple to-brand-blue rounded-2xl p-6 sm:p-8 md:p-10 text-white text-center shadow-2xl" data-aos="fade-up" data-aos-delay="500">
+                            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4">Here's How We Improve Your Credit Score</h3>
+                            <p class="text-sm sm:text-base md:text-lg text-white/90 mb-6 leading-relaxed">
+                                Our AI analyzes your credit profile and creates a personalized action plan. Follow simple steps, track your progress, and watch your score climb—guaranteed.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                                <a href="#pricing" class="inline-flex items-center justify-center gap-2 bg-white text-brand-purple font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 text-sm sm:text-base">
+                                    <span>Start Improving Now</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                                <a href="#how-it-works" class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-xl hover:bg-white/10 transition-all text-sm sm:text-base">
+                                    <span>See How It Works</span>
+                                    <i class="fa-solid fa-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Mobile App Download Section -->
+                <section id="mobile-app-download" class="py-16 md:py-20 bg-white border-y border-brand-gray-200">
+                    <div class="container mx-auto px-6">
+                        <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                            <!-- Left Content -->
+                            <div class="flex-1 text-center lg:text-left" data-aos="fade-right">
+                                <div class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-blue-100 text-brand-purple text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-purple-200">
+                                    <i class="fa-solid fa-mobile-screen-button"></i>
+                                    <span>Mobile App Available</span>
+                                </div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+                                    Download CreditGuard on <span class="bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent">iOS & Android</span>
+                                </h2>
+                                <p class="text-lg text-brand-gray-400 mb-8 max-w-xl">
+                                    Take control of your credit wherever you go. Monitor your score, get instant alerts, and receive personalized AI recommendations right in your pocket.
+                                </p>
+
+                                <!-- App Store Badges -->
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6">
+                                    <a href="#" class="inline-flex items-center justify-center gap-3 bg-black hover:bg-gray-900 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+                                        <i class="fa-brands fa-apple text-3xl"></i>
+                                        <div class="text-left">
+                                            <div class="text-xs">Download on the</div>
+                                            <div class="text-lg font-bold leading-tight">App Store</div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="inline-flex items-center justify-center gap-3 bg-black hover:bg-gray-900 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+                                        <i class="fa-brands fa-google-play text-3xl"></i>
+                                        <div class="text-left">
+                                            <div class="text-xs">GET IT ON</div>
+                                            <div class="text-lg font-bold leading-tight">Google Play</div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <!-- Features List -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+                                    <div class="flex items-start gap-3">
+                                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-check text-brand-green text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-brand-dark text-sm">Real-time Updates</h4>
+                                            <p class="text-brand-gray-400 text-sm">Get instant notifications</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-check text-brand-green text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-brand-dark text-sm">Secure & Private</h4>
+                                            <p class="text-brand-gray-400 text-sm">Bank-level encryption</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-check text-brand-green text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-brand-dark text-sm">Biometric Login</h4>
+                                            <p class="text-brand-gray-400 text-sm">Face ID & Touch ID</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                                            <i class="fa-solid fa-check text-brand-green text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-brand-dark text-sm">Offline Access</h4>
+                                            <p class="text-brand-gray-400 text-sm">View reports anywhere</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right - Mobile Phone Mockup -->
+                            <div class="flex-1 flex justify-center lg:justify-end" data-aos="fade-left">
+                                <div class="relative">
+                                    <!-- Phone Frame -->
+                                    <div class="relative w-64 h-auto">
+                                        <!-- Decorative Elements -->
+                                        <div class="absolute -top-8 -left-8 w-24 h-24 bg-purple-200/30 rounded-full blur-2xl"></div>
+                                        <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl"></div>
+
+                                        <!-- Phone -->
+                                        <div class="relative z-10 bg-brand-dark rounded-[3rem] p-3 shadow-2xl">
+                                            <div class="bg-white rounded-[2.5rem] overflow-hidden">
+                                                <!-- Status Bar -->
+                                                <div class="bg-gradient-to-r from-brand-purple to-brand-blue px-6 py-3 flex items-center justify-between text-white text-xs">
+                                                    <span class="font-semibold">9:41</span>
+                                                    <div class="flex items-center gap-1">
+                                                        <i class="fa-solid fa-signal"></i>
+                                                        <i class="fa-solid fa-wifi"></i>
+                                                        <i class="fa-solid fa-battery-three-quarters"></i>
+                                                    </div>
+                                                </div>
+                                                <!-- App Screenshot Placeholder -->
+                                                <div class="aspect-[9/16] bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center p-6">
+                                                    <div class="text-center">
+                                                        <div class="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-brand-purple to-brand-blue rounded-2xl flex items-center justify-center shadow-lg">
+                                                            <i class="fa-solid fa-shield-halved text-white text-3xl"></i>
+                                                        </div>
+                                                        <div class="text-6xl font-extrabold text-brand-dark mb-2">742</div>
+                                                        <div class="text-sm text-brand-gray-400 font-medium mb-6">Your Credit Score</div>
+                                                        <div class="space-y-2">
+                                                            <div class="bg-white rounded-lg p-3 shadow-sm text-left">
+                                                                <div class="text-xs text-brand-gray-400">Payment History</div>
+                                                                <div class="flex items-center justify-between mt-1">
+                                                                    <div class="text-sm font-semibold text-brand-dark">Excellent</div>
+                                                                    <div class="w-16 h-2 bg-green-100 rounded-full overflow-hidden">
+                                                                        <div class="w-full h-full bg-brand-green"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="bg-white rounded-lg p-3 shadow-sm text-left">
+                                                                <div class="text-xs text-brand-gray-400">Credit Utilization</div>
+                                                                <div class="flex items-center justify-between mt-1">
+                                                                    <div class="text-sm font-semibold text-brand-dark">Good</div>
+                                                                    <div class="w-16 h-2 bg-blue-100 rounded-full overflow-hidden">
+                                                                        <div class="w-3/4 h-full bg-brand-blue"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Floating Badge -->
+                                    <div class="absolute -right-4 top-1/4 bg-white rounded-xl shadow-lg p-3 border border-brand-gray-200 animate-float">
+                                        <div class="flex items-center gap-2">
+                                            <i class="fa-solid fa-star text-brand-yellow text-xl"></i>
+                                            <div class="text-left">
+                                                <div class="text-xs text-brand-gray-400">App Rating</div>
+                                                <div class="text-sm font-bold text-brand-dark">4.9/5</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section id="features" class="py-20 md:py-28 bg-white">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center max-w-3xl mx-auto mb-16">
+                            <span class="text-brand-purple font-semibold mb-2 block" data-aos="fade-up">POWERFUL FEATURES</span>
+                            <h2 class="text-3xl md:text-5xl font-bold text-brand-dark mb-4" data-aos="fade-up" data-aos-delay="100">Everything You Need for Financial Health</h2>
+                            <p class="text-lg text-brand-gray" data-aos="fade-up" data-aos-delay="200">Monitor scores from all three bureaus, get AI-powered insights, and stay protected 24/7.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Feature Card 1: Real-Time Credit Monitoring -->
+                            <div class="bg-white p-8 rounded-2xl border border-brand-gray-300 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                                <div class="flex items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-purple-100 to-blue-100 mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-chart-line text-2xl text-brand-purple"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3 text-brand-dark">Real-Time Credit Monitoring</h3>
+                                <p class="text-brand-gray">Get your VantageScore 3.0 updated regularly from all three bureaus—Experian, Equifax, and TransUnion.</p>
+                            </div>
+                            <!-- Feature Card 2: AI-Powered Assistant -->
+                            <div class="bg-white p-8 rounded-2xl border border-brand-gray-300 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                                <div class="flex items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-purple-100 to-blue-100 mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-robot text-2xl text-brand-purple"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3 text-brand-dark">Your Personal Credit Assistant</h3>
+                                <p class="text-brand-gray">Ask questions in plain English and get personalized advice 24/7 from our AI credit expert.</p>
+                            </div>
+                            <!-- Feature Card 3: Smart Actions & Recommendations -->
+                            <div class="bg-white p-8 rounded-2xl border border-brand-gray-300 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                                <div class="flex items-center justify-center h-14 w-14 rounded-full bg-green-50 mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-bullseye text-2xl text-brand-green"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3 text-brand-dark">Smart Actions & Recommendations</h3>
+                                <p class="text-brand-gray">Get prioritized, actionable steps with impact predictions and estimated timelines for results.</p>
+                            </div>
+                            <!-- Feature Card 4: Credit Alerts & Dark Web Monitoring -->
+                            <div class="bg-white p-8 rounded-2xl border border-brand-gray-300 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                                <div class="flex items-center justify-center h-14 w-14 rounded-full bg-orange-50 mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-shield-halved text-2xl text-brand-orange"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3 text-brand-dark">Stay Protected 24/7</h3>
+                                <p class="text-brand-gray">Real-time alerts for new accounts, hard inquiries, and dark web monitoring to protect against identity theft.</p>
+                            </div>
+                            <!-- Feature Card 5: Credit Education -->
+                            <div class="bg-white p-8 rounded-2xl border border-brand-gray-300 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="200">
+                                <div class="flex items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-purple-100 to-blue-100 mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-graduation-cap text-2xl text-brand-purple"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3 text-brand-dark">Credit Education</h3>
+                                <p class="text-brand-gray">Learn about credit in plain English with personalized educational content and tips.</p>
+                            </div>
+                            <!-- Feature Card 6: Gamification & Progress -->
+                            <div class="bg-white p-8 rounded-2xl border border-brand-gray-300 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                                <div class="flex items-center justify-center h-14 w-14 rounded-full bg-green-50 mb-6 group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-trophy text-2xl text-brand-green"></i>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3 text-brand-dark">Track Your Progress</h3>
+                                <p class="text-brand-gray">Earn badges, celebrate milestones, and track your credit improvement journey with gamified achievements.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- How It Works Section -->
+                <section id="how-it-works" class="py-20 md:py-28 bg-brand-gray-100/50">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center max-w-3xl mx-auto mb-16">
+                            <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">Your Path to a Better Score in 3 Steps</h2>
+                            <p class="text-lg text-brand-gray-400">We make complex credit management simple. Connect your accounts, get your personalized plan, and watch your score grow.</p>
+                        </div>
+                        <div class="flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-12">
+                            <!-- Step 1 -->
+                            <div id="step-1" class="text-center max-w-sm">
+                                <div class="relative mb-6">
+                                    <div class="flex items-center justify-center h-20 w-20 mx-auto rounded-full bg-white border-2 border-brand-purple shadow-lg">
+                                        <span class="text-3xl font-bold text-brand-purple">1</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Connect Your Accounts</h3>
+                                <p class="text-brand-gray-400">Securely link your credit cards, loans, and bank accounts in minutes for a complete financial overview.</p>
+                            </div>
+                            <div class="hidden lg:block h-1 w-20 bg-brand-gray-200 rounded-full"></div>
+                             <!-- Step 2 -->
+                            <div id="step-2" class="text-center max-w-sm">
+                                <div class="relative mb-6">
+                                    <div class="flex items-center justify-center h-20 w-20 mx-auto rounded-full bg-white border-2 border-brand-purple shadow-lg">
+                                        <span class="text-3xl font-bold text-brand-purple">2</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Get Your AI Action Plan</h3>
+                                <p class="text-brand-gray-400">Our AI analyzes your data and instantly generates a prioritized list of Smart Actions to improve your score.</p>
+                            </div>
+                            <div class="hidden lg:block h-1 w-20 bg-brand-gray-200 rounded-full"></div>
+                             <!-- Step 3 -->
+                            <div id="step-3" class="text-center max-w-sm">
+                                <div class="relative mb-6">
+                                    <div class="flex items-center justify-center h-20 w-20 mx-auto rounded-full bg-white border-2 border-brand-purple shadow-lg">
+                                        <span class="text-3xl font-bold text-brand-purple">3</span>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Track Your Progress</h3>
+                                <p class="text-brand-gray-400">Complete actions and monitor your score's growth with real-time updates and predictive insights.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Interactive Demo Section -->
+                <section id="interactive-demo" class="py-20 md:py-28">
+                    <div class="container mx-auto px-6">
+                        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                            <!-- Left Content -->
+                            <div class="w-full lg:w-1/2">
+                                <span class="text-brand-purple font-semibold mb-2 block text-xs sm:text-sm">AI SCORE PREDICTOR</span>
+                                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-dark mb-4 sm:mb-6">See Your Score's Potential</h2>
+                                <p class="text-base sm:text-lg text-brand-gray-400 mb-6 sm:mb-8">Our interactive chart demonstrates how completing Smart Actions can impact your credit score over time. See how small changes can lead to big results.</p>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check-circle text-brand-green text-xl mt-1 mr-3"></i>
+                                        <span><strong class="text-brand-dark">Visualize Growth:</strong> See a clear projection of your score improvement.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check-circle text-brand-green text-xl mt-1 mr-3"></i>
+                                        <span><strong class="text-brand-dark">Identify Key Factors:</strong> Understand what drives your score up or down.</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check-circle text-brand-green text-xl mt-1 mr-3"></i>
+                                        <span><strong class="text-brand-dark">Build Confidence:</strong> Make financial decisions with a clear view of the future.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Right Chart -->
+                            <div id="chart-container-wrapper" class="w-full lg:w-1/2 bg-white p-4 sm:p-6 rounded-2xl border border-brand-gray-200 shadow-xl">
+                                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                                    <div>
+                                        <h4 class="font-bold text-base sm:text-lg">Your Score in 6 Months</h4>
+                                        <p class="text-xs sm:text-sm text-brand-gray-400">Based on completing recommended actions</p>
+                                    </div>
+                                    <div class="flex items-center space-x-2 sm:space-x-4">
+                                        <div class="text-right">
+                                            <p class="text-xs text-brand-gray-400">Current</p>
+                                            <p class="text-xl sm:text-2xl font-bold text-brand-gray-400">742</p>
+                                        </div>
+                                        <i class="fa-solid fa-arrow-right-long text-brand-green text-base sm:text-xl"></i>
+                                        <div class="text-right">
+                                            <p class="text-xs text-brand-green">Predicted</p>
+                                            <p class="text-xl sm:text-2xl font-bold text-brand-green">799</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="score-chart" class="w-full" style="height: 300px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pricing Section -->
+                <section id="pricing" class="py-20 md:py-28 bg-brand-gray-100/50">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center max-w-3xl mx-auto mb-16">
+                            <span class="text-brand-purple font-semibold mb-2 block" data-aos="fade-up">TRANSPARENT PRICING</span>
+                            <h2 class="text-3xl md:text-5xl font-bold text-brand-dark mb-4" data-aos="fade-up" data-aos-delay="100">Choose Your Perfect Plan</h2>
+                            <p class="text-lg text-brand-gray" data-aos="fade-up" data-aos-delay="200">Start free and upgrade as you need. All plans include bank-level security and 24/7 support.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                            <!-- Free Plan -->
+                            <div class="bg-white rounded-2xl p-8 border-2 border-brand-gray-300 hover:border-brand-purple transition-all" data-aos="fade-up" data-aos-delay="100">
+                                <div class="mb-6">
+                                    <h3 class="text-2xl font-bold text-brand-dark mb-2">Free</h3>
+                                    <p class="text-brand-gray-400 mb-4">Get started with the basics</p>
+                                    <div class="flex items-baseline">
+                                        <span class="text-4xl font-extrabold text-brand-dark">$0</span>
+                                        <span class="text-brand-gray-400 ml-2">/month</span>
+                                    </div>
+                                </div>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray-400">Credit score monitoring</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray-400">Monthly credit reports</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray-400">Basic alerts</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray-400">Educational content</span>
+                                    </li>
+                                </ul>
+                                <a href="#" class="block w-full text-center bg-brand-gray-100 hover:bg-brand-gray-200 text-brand-dark font-semibold px-6 py-3 rounded-lg transition-all">Get Started</a>
+                            </div>
+
+                            <!-- Premium Plan (Popular) -->
+                            <div class="bg-white rounded-2xl p-8 border-2 border-brand-purple shadow-xl relative transform hover:scale-105 transition-all" data-aos="fade-up" data-aos-delay="200">
+                                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                                    <span class="bg-gradient-to-r from-brand-purple to-brand-blue text-white text-xs font-bold px-4 py-1.5 rounded-full">MOST POPULAR</span>
+                                </div>
+                                <div class="mb-6">
+                                    <h3 class="text-2xl font-bold text-brand-dark mb-2">Premium</h3>
+                                    <p class="text-brand-gray mb-4">Full AI-powered features</p>
+                                    <div class="flex items-baseline">
+                                        <span class="text-4xl font-extrabold text-brand-purple">$9.99</span>
+                                        <span class="text-brand-gray ml-2">/month</span>
+                                    </div>
+                                </div>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-dark font-medium">Everything in Free, plus:</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray">All three bureau scores</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray">Daily credit monitoring</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray">AI credit assistant</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray">Dark web monitoring</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray">Priority support</span>
+                                    </li>
+                                </ul>
+                                <a href="#" class="block w-full text-center bg-brand-purple hover:opacity-90 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all">Start Free Trial</a>
+                            </div>
+
+                            <!-- Family Plan -->
+                            <div class="bg-white rounded-2xl p-8 border-2 border-brand-gray-300 hover:border-brand-purple transition-all" data-aos="fade-up" data-aos-delay="300">
+                                <div class="mb-6">
+                                    <h3 class="text-2xl font-bold text-brand-dark mb-2">Family</h3>
+                                    <p class="text-brand-gray mb-4">Perfect for families</p>
+                                    <div class="flex items-baseline">
+                                        <span class="text-4xl font-extrabold text-brand-dark">$19.99</span>
+                                        <span class="text-brand-gray ml-2">/month</span>
+                                    </div>
+                                </div>
+                                <ul class="space-y-4 mb-8">
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-dark font-medium">Everything in Premium, plus:</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray">Up to 5 family members</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray">Family dashboard</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray">Shared alerts</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray">Credit education for all</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-check text-brand-green text-lg mt-1 mr-3"></i>
+                                        <span class="text-brand-gray">Premium support</span>
+                                    </li>
+                                </ul>
+                                <a href="#" class="block w-full text-center bg-brand-surface hover:bg-brand-gray-300 text-brand-dark font-semibold px-6 py-3 rounded-lg transition-all">Start Free Trial</a>
+                            </div>
+                        </div>
+
+                        <!-- Money Back Guarantee -->
+                        <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
+                            <div class="inline-flex items-center gap-3 bg-green-50 text-brand-green px-6 py-3 rounded-full border border-green-200">
+                                <i class="fa-solid fa-shield-check text-xl"></i>
+                                <span class="font-semibold">30-day money-back guarantee on all paid plans</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Testimonials Section -->
+                <section id="testimonials" class="py-20 md:py-28 bg-gradient-to-br from-purple-50 via-white to-blue-50 overflow-hidden">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 px-4">
+                            <span class="text-brand-purple font-semibold mb-2 block text-xs sm:text-sm" data-aos="fade-up">SUCCESS STORIES</span>
+                            <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold text-brand-dark mb-3 sm:mb-4" data-aos="fade-up" data-aos-delay="100">Real People, Real Results</h2>
+                            <p class="text-sm sm:text-base md:text-lg text-brand-gray" data-aos="fade-up" data-aos-delay="200">See how AI-powered recommendations helped users achieve their financial dreams</p>
+                        </div>
+
+                        <!-- Testimonials Section: Desktop Carousel / Mobile Scroll -->
+                        <!-- Mobile: Horizontal Scroll -->
+                        <div class="md:hidden overflow-x-auto pb-4 scrollbar-hide" data-aos="fade-up" data-aos-delay="300" style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;">
+                            <div class="flex gap-4 px-6">
+                                <!-- Testimonial 1 -->
+                                <div class="bg-white rounded-2xl p-5 shadow-xl flex-shrink-0" style="width: calc(100vw - 80px); scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">SJ</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">Sarah & James</h4>
+                                            <p class="text-xs text-brand-gray">First-Time Homebuyers</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+127 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Rejected twice for our mortgage. CreditGuard's AI fixed our score—now we own our dream home!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-house"></i>
+                                        <span>Purchased $450K home</span>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 2 -->
+                                <div class="bg-white rounded-2xl p-5 shadow-xl flex-shrink-0" style="width: calc(100vw - 80px); scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">MR</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">Marcus Rodriguez</h4>
+                                            <p class="text-xs text-brand-gray">Small Business Owner</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+89 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Needed a work truck but my credit held me back. Smart Actions showed me what to fix. Got 3.9% APR and saved $4,000!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-truck"></i>
+                                        <span>Saved $4,000 on auto loan</span>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 3 -->
+                                <div class="bg-white rounded-2xl p-5 shadow-xl flex-shrink-0" style="width: calc(100vw - 80px); scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">EP</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">Emily Peterson</h4>
+                                            <p class="text-xs text-brand-gray">Marketing Manager</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+73 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Stuck with high-interest cards. AI recommended becoming an authorized user. Now I have a premium card with 0% APR!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                        <span>Qualified for premium card</span>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 4 -->
+                                <div class="bg-white rounded-2xl p-5 shadow-xl flex-shrink-0" style="width: calc(100vw - 80px); scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">DL</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">David & Lisa Chen</h4>
+                                            <p class="text-xs text-brand-gray">Homeowners</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+102 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Wanted to refinance our mortgage. Smart Actions helped us optimize everything. Now saving $380/month!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                                        <span>Saving $4,560/year</span>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 5 -->
+                                <div class="bg-white rounded-2xl p-5 shadow-xl flex-shrink-0" style="width: calc(100vw - 80px); scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">AK</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">Aisha Kumar</h4>
+                                            <p class="text-xs text-brand-gray">Recent Graduate</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+95 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Starting my career with student loans was stressful. CreditGuard set up auto-pay and recommended a secured card. Building great credit now!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-graduation-cap"></i>
+                                        <span>Building strong credit foundation</span>
+                                    </div>
+                                </div>
+
+                                <!-- Testimonial 6 -->
+                                <div class="bg-white rounded-2xl p-5 shadow-xl flex-shrink-0" style="width: calc(100vw - 80px); scroll-snap-align: center;">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-lg font-bold">TW</div>
+                                        <div>
+                                            <h4 class="font-bold text-brand-dark">Thomas Williams</h4>
+                                            <p class="text-xs text-brand-gray">Entrepreneur</p>
+                                        </div>
+                                    </div>
+                                    <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-3 py-1.5 rounded-full mb-3 border border-green-200 text-sm">
+                                        <i class="fa-solid fa-arrow-trend-up"></i>
+                                        <span class="font-bold">+143 points</span>
+                                    </div>
+                                    <p class="text-brand-gray text-sm mb-3">"Needed capital to expand my restaurant. CreditGuard's AI helped me secure a $150K SBA loan. Second location opens next month!"</p>
+                                    <div class="flex items-center gap-2 text-brand-purple font-semibold text-sm">
+                                        <i class="fa-solid fa-store"></i>
+                                        <span>Secured $150K business loan</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="md:hidden text-center text-sm text-brand-gray mt-2">👉 Swipe to see more stories</p>
+
+                        <!-- Desktop: Carousel -->
+                        <div class="hidden md:block relative max-w-4xl mx-auto px-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="testimonials-container overflow-hidden">
+                                <div id="testimonials-track" class="flex transition-transform duration-500 ease-in-out">
+
+                                    <!-- Testimonial 1: Home Purchase -->
+                                    <div class="testimonial-slide min-w-full px-12 sm:px-14 md:px-16 flex-shrink-0">
+                                        <div class="bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl mx-auto max-w-2xl">
+                                            <div class="flex items-center gap-4 mb-6">
+                                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                                                    SJ
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-brand-dark text-lg">Sarah & James</h4>
+                                                    <p class="text-sm text-brand-gray">First-Time Homebuyers</p>
+                                                    <div class="flex gap-1 mt-1">
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-4 py-2 rounded-full mb-4 border border-green-200">
+                                                <i class="fa-solid fa-arrow-trend-up"></i>
+                                                <span class="font-bold">+127 points in 6 months</span>
+                                            </div>
+
+                                            <blockquote class="text-brand-gray text-lg leading-relaxed mb-6">
+                                                "Rejected twice for our mortgage. CreditGuard's AI fixed our score—now we own our dream home!"
+                                            </blockquote>
+
+                                            <div class="flex items-center gap-2 text-brand-purple font-semibold">
+                                                <i class="fa-solid fa-house"></i>
+                                                <span>Purchased $450K home</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Testimonial 2: Car Loan -->
+                                    <div class="testimonial-slide min-w-full px-12 sm:px-14 md:px-16 flex-shrink-0">
+                                        <div class="bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl mx-auto max-w-2xl">
+                                            <div class="flex items-center gap-4 mb-6">
+                                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                                                    MR
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-brand-dark text-lg">Marcus Rodriguez</h4>
+                                                    <p class="text-sm text-brand-gray">Small Business Owner</p>
+                                                    <div class="flex gap-1 mt-1">
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-4 py-2 rounded-full mb-4 border border-green-200">
+                                                <i class="fa-solid fa-arrow-trend-up"></i>
+                                                <span class="font-bold">+89 points in 4 months</span>
+                                            </div>
+
+                                            <blockquote class="text-brand-gray text-lg leading-relaxed mb-6">
+                                                "Needed a work truck but my credit held me back. Smart Actions showed me what to fix. Got 3.9% APR and saved $4,000!"
+                                            </blockquote>
+
+                                            <div class="flex items-center gap-2 text-brand-purple font-semibold">
+                                                <i class="fa-solid fa-truck"></i>
+                                                <span>Saved $4,000 on auto loan</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Testimonial 3: Credit Card Approval -->
+                                    <div class="testimonial-slide min-w-full px-12 sm:px-14 md:px-16 flex-shrink-0">
+                                        <div class="bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl mx-auto max-w-2xl">
+                                            <div class="flex items-center gap-4 mb-6">
+                                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                                                    EP
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-brand-dark text-lg">Emily Peterson</h4>
+                                                    <p class="text-sm text-brand-gray">Marketing Manager</p>
+                                                    <div class="flex gap-1 mt-1">
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-4 py-2 rounded-full mb-4 border border-green-200">
+                                                <i class="fa-solid fa-arrow-trend-up"></i>
+                                                <span class="font-bold">+73 points in 3 months</span>
+                                            </div>
+
+                                            <blockquote class="text-brand-gray text-lg leading-relaxed mb-6">
+                                                "Stuck with high-interest cards. AI recommended becoming an authorized user. Now I have a premium card with 0% APR!"
+                                            </blockquote>
+
+                                            <div class="flex items-center gap-2 text-brand-purple font-semibold">
+                                                <i class="fa-solid fa-credit-card"></i>
+                                                <span>Qualified for premium card</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Testimonial 4: Refinancing -->
+                                    <div class="testimonial-slide min-w-full px-12 sm:px-14 md:px-16 flex-shrink-0">
+                                        <div class="bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl mx-auto max-w-2xl">
+                                            <div class="flex items-center gap-4 mb-6">
+                                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                                                    DL
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-brand-dark text-lg">David & Lisa Chen</h4>
+                                                    <p class="text-sm text-brand-gray">Homeowners</p>
+                                                    <div class="flex gap-1 mt-1">
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-4 py-2 rounded-full mb-4 border border-green-200">
+                                                <i class="fa-solid fa-arrow-trend-up"></i>
+                                                <span class="font-bold">+102 points in 5 months</span>
+                                            </div>
+
+                                            <blockquote class="text-brand-gray text-lg leading-relaxed mb-6">
+                                                "Wanted to refinance our mortgage. Smart Actions helped us optimize everything. Now saving $380/month!"
+                                            </blockquote>
+
+                                            <div class="flex items-center gap-2 text-brand-purple font-semibold">
+                                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                                                <span>Saving $4,560/year</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Testimonial 5: Student Loans -->
+                                    <div class="testimonial-slide min-w-full px-12 sm:px-14 md:px-16 flex-shrink-0">
+                                        <div class="bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl mx-auto max-w-2xl">
+                                            <div class="flex items-center gap-4 mb-6">
+                                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                                                    AK
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-brand-dark text-lg">Aisha Kumar</h4>
+                                                    <p class="text-sm text-brand-gray">Recent Graduate</p>
+                                                    <div class="flex gap-1 mt-1">
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-4 py-2 rounded-full mb-4 border border-green-200">
+                                                <i class="fa-solid fa-arrow-trend-up"></i>
+                                                <span class="font-bold">+95 points in 4 months</span>
+                                            </div>
+
+                                            <blockquote class="text-brand-gray text-lg leading-relaxed mb-6">
+                                                "Starting my career with student loans was stressful. CreditGuard set up auto-pay and recommended a secured card. Building great credit now!"
+                                            </blockquote>
+
+                                            <div class="flex items-center gap-2 text-brand-purple font-semibold">
+                                                <i class="fa-solid fa-graduation-cap"></i>
+                                                <span>Building strong credit foundation</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Testimonial 6: Business Loan -->
+                                    <div class="testimonial-slide min-w-full px-12 sm:px-14 md:px-16 flex-shrink-0">
+                                        <div class="bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl mx-auto max-w-2xl">
+                                            <div class="flex items-center gap-4 mb-6">
+                                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                                                    TW
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-bold text-brand-dark text-lg">Thomas Williams</h4>
+                                                    <p class="text-sm text-brand-gray">Entrepreneur</p>
+                                                    <div class="flex gap-1 mt-1">
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                        <i class="fa-solid fa-star text-yellow-400 text-sm"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="inline-flex items-center gap-2 bg-green-50 text-brand-green px-4 py-2 rounded-full mb-4 border border-green-200">
+                                                <i class="fa-solid fa-arrow-trend-up"></i>
+                                                <span class="font-bold">+143 points in 8 months</span>
+                                            </div>
+
+                                            <blockquote class="text-brand-gray text-lg leading-relaxed mb-6">
+                                                "Needed capital to expand my restaurant. CreditGuard's AI helped me secure a $150K SBA loan. Second location opens next month!"
+                                            </blockquote>
+
+                                            <div class="flex items-center gap-2 text-brand-purple font-semibold">
+                                                <i class="fa-solid fa-store"></i>
+                                                <span>Secured $150K business loan</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Navigation Arrows -->
+                            <button id="prev-testimonial" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-brand-purple hover:bg-brand-purple hover:text-white transition-all duration-300 z-10 text-sm sm:text-base">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button id="next-testimonial" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-brand-purple hover:bg-brand-purple hover:text-white transition-all duration-300 z-10 text-sm sm:text-base">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+
+                            <!-- Dot Indicators -->
+                            <div class="flex justify-center gap-2 mt-8">
+                                <button class="testimonial-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-brand-purple transition-all duration-300" data-index="0"></button>
+                                <button class="testimonial-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-gray-300 hover:bg-brand-purple/50 transition-all duration-300" data-index="1"></button>
+                                <button class="testimonial-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-gray-300 hover:bg-brand-purple/50 transition-all duration-300" data-index="2"></button>
+                                <button class="testimonial-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-gray-300 hover:bg-brand-purple/50 transition-all duration-300" data-index="3"></button>
+                                <button class="testimonial-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-gray-300 hover:bg-brand-purple/50 transition-all duration-300" data-index="4"></button>
+                                <button class="testimonial-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-gray-300 hover:bg-brand-purple/50 transition-all duration-300" data-index="5"></button>
+                            </div>
+                        </div>
+
+                        <!-- Stats Section -->
+                        <div class="mt-20 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="400">
+                            <div class="text-center">
+                                <div class="text-4xl md:text-5xl font-extrabold text-brand-purple mb-2">50K+</div>
+                                <div class="text-brand-gray font-medium">Active Users</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl md:text-5xl font-extrabold text-brand-purple mb-2">+87</div>
+                                <div class="text-brand-gray font-medium">Avg. Score Increase</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl md:text-5xl font-extrabold text-brand-purple mb-2">4.8★</div>
+                                <div class="text-brand-gray font-medium">App Store Rating</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl md:text-5xl font-extrabold text-brand-purple mb-2">$2.3M</div>
+                                <div class="text-brand-gray font-medium">Saved in Interest</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FAQ Section -->
+                <section id="faq" class="py-20 md:py-28 bg-white">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center max-w-3xl mx-auto mb-16">
+                            <span class="text-brand-purple font-semibold mb-2 block" data-aos="fade-up">FAQ</span>
+                            <h2 class="text-3xl md:text-5xl font-bold text-brand-dark mb-4" data-aos="fade-up" data-aos-delay="100">Frequently Asked Questions</h2>
+                            <p class="text-lg text-brand-gray-400" data-aos="fade-up" data-aos-delay="200">Have questions? We have answers. If you can't find what you're looking for, our support team is here to help.</p>
+                        </div>
+
+                        <div class="max-w-3xl mx-auto space-y-4">
+                            <!-- FAQ Item 1 -->
+                            <div class="bg-white border border-brand-gray-200 rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                                <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center hover:bg-brand-gray-100/50 transition-colors">
+                                    <span class="text-lg font-semibold text-brand-dark pr-8">How does CreditGuard protect my personal information?</span>
+                                    <i class="fa-solid fa-chevron-down text-brand-purple text-xl transition-transform"></i>
+                                </button>
+                                <div class="faq-answer hidden px-6 pb-5">
+                                    <p class="text-brand-gray-400">We use bank-level 256-bit encryption to protect your data. Your information is encrypted both in transit and at rest. We're SOC 2 Type II certified and compliant with all major data privacy regulations including GDPR and CCPA. We never sell your personal information to third parties.</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 2 -->
+                            <div class="bg-white border border-brand-gray-200 rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                                <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center hover:bg-brand-gray-100/50 transition-colors">
+                                    <span class="text-lg font-semibold text-brand-dark pr-8">Will checking my credit score hurt my credit?</span>
+                                    <i class="fa-solid fa-chevron-down text-brand-purple text-xl transition-transform"></i>
+                                </button>
+                                <div class="faq-answer hidden px-6 pb-5">
+                                    <p class="text-brand-gray-400">No! Checking your credit score through CreditGuard is a "soft inquiry" and will not impact your credit score. You can check your score as often as you like without any negative effects. Only "hard inquiries" from lenders reviewing your credit for lending decisions can temporarily affect your score.</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 3 -->
+                            <div class="bg-white border border-brand-gray-200 rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                                <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center hover:bg-brand-gray-100/50 transition-colors">
+                                    <span class="text-lg font-semibold text-brand-dark pr-8">How accurate is the AI Score Predictor?</span>
+                                    <i class="fa-solid fa-chevron-down text-brand-purple text-xl transition-transform"></i>
+                                </button>
+                                <div class="faq-answer hidden px-6 pb-5">
+                                    <p class="text-brand-gray-400">Our AI Score Predictor uses advanced machine learning algorithms trained on millions of credit profiles. While no prediction can be 100% accurate, our model has achieved 85%+ accuracy within a 15-point range in testing. Predictions improve as we learn more about your financial behavior over time.</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 4 -->
+                            <div class="bg-white border border-brand-gray-200 rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                                <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center hover:bg-brand-gray-100/50 transition-colors">
+                                    <span class="text-lg font-semibold text-brand-dark pr-8">Can I cancel my subscription anytime?</span>
+                                    <i class="fa-solid fa-chevron-down text-brand-purple text-xl transition-transform"></i>
+                                </button>
+                                <div class="faq-answer hidden px-6 pb-5">
+                                    <p class="text-brand-gray-400">Yes, absolutely! You can cancel your subscription at any time from your account settings. There are no cancellation fees or hidden charges. If you cancel, you'll continue to have access to premium features until the end of your current billing period.</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 5 -->
+                            <div class="bg-white border border-brand-gray-200 rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                                <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center hover:bg-brand-gray-100/50 transition-colors">
+                                    <span class="text-lg font-semibold text-brand-dark pr-8">How long does it take to see credit score improvements?</span>
+                                    <i class="fa-solid fa-chevron-down text-brand-purple text-xl transition-transform"></i>
+                                </button>
+                                <div class="faq-answer hidden px-6 pb-5">
+                                    <p class="text-brand-gray-400">Results vary by individual, but most users see their first improvements within 30-60 days of following our Smart Actions recommendations. Significant improvements (20+ points) typically take 3-6 months of consistent action. The key is following the personalized plan and completing recommended actions regularly.</p>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Item 6 -->
+                            <div class="bg-white border border-brand-gray-200 rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="600">
+                                <button class="faq-question w-full text-left px-6 py-5 flex justify-between items-center hover:bg-brand-gray-100/50 transition-colors">
+                                    <span class="text-lg font-semibold text-brand-dark pr-8">Which credit bureaus do you monitor?</span>
+                                    <i class="fa-solid fa-chevron-down text-brand-purple text-xl transition-transform"></i>
+                                </button>
+                                <div class="faq-answer hidden px-6 pb-5">
+                                    <p class="text-brand-gray-400">Free and Premium plans include monitoring from TransUnion. Our Pro plan includes comprehensive monitoring from all three major credit bureaus: Experian, TransUnion, and Equifax. This gives you complete visibility into your credit profile across all reporting agencies.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="700">
+                            <p class="text-brand-gray-400 mb-4">Still have questions?</p>
+                            <a href="#" class="text-brand-purple font-semibold hover:underline">Contact our support team <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section id="cta-section" class="bg-brand-gray-100/50">
+                    <div class="container mx-auto px-6 py-20">
+                        <div class="bg-gradient-to-r from-brand-purple to-brand-blue rounded-2xl p-10 md:p-16 text-center relative overflow-hidden">
+                            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-white/10 rounded-full"></div>
+                            <div class="absolute -top-12 -right-5 w-40 h-40 bg-white/10 rounded-full"></div>
+                            <div class="relative z-10" data-aos="zoom-in">
+                                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Take Control of Your Credit?</h2>
+                                <p class="text-lg text-white/80 max-w-2xl mx-auto mb-8">Join thousands of users building better financial futures with CreditGuard. Get your free analysis and personalized action plan today.</p>
+                                <a href="#" class="bg-white text-brand-purple font-bold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 inline-block">
+                                    <i class="fa-solid fa-rocket mr-2"></i>Sign Up and Get Your Free Score
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer id="footer" class="bg-brand-dark text-white">
+                    <div class="container mx-auto px-6 py-16">
+                        <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-10">
+                            <div class="lg:col-span-2">
+                                <a href="#" class="flex items-center space-x-2 mb-4">
+                                    <span class="bg-gradient-to-br from-brand-purple to-brand-blue rounded-lg p-2 flex items-center justify-center">
+                                        <i class="fa-solid fa-shield-halved text-white text-xl"></i>
+                                    </span>
+                                    <span class="text-xl font-bold text-white">CreditGuard</span>
+                                </a>
+                                <p class="text-brand-gray-300/70">Your AI-powered guide to financial freedom. We help you understand, improve, and protect your credit.</p>
+                                <div class="flex space-x-4 mt-6">
+                                    <a href="#" class="text-brand-gray-300 hover:text-white"><i class="fa-brands fa-twitter text-xl"></i></a>
+                                    <a href="#" class="text-brand-gray-300 hover:text-white"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+                                    <a href="#" class="text-brand-gray-300 hover:text-white"><i class="fa-brands fa-linkedin-in text-xl"></i></a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-4">Product</h4>
+                                <ul class="space-y-3">
+                                    <li><a href="#features" class="text-brand-gray-300/70 hover:text-white transition-colors">Features</a></li>
+                                    <li><a href="#pricing" class="text-brand-gray-300/70 hover:text-white transition-colors">Pricing</a></li>
+                                    <li><a href="#" class="text-brand-gray-300/70 hover:text-white transition-colors">Security</a></li>
+                                    <li><a href="#" class="text-brand-gray-300/70 hover:text-white transition-colors">Updates</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-4">Company</h4>
+                                <ul class="space-y-3">
+                                    <li><a href="#" class="text-brand-gray-300/70 hover:text-white transition-colors">About Us</a></li>
+                                    <li><a href="#" class="text-brand-gray-300/70 hover:text-white transition-colors">Blog</a></li>
+                                    <li><a href="#" class="text-brand-gray-300/70 hover:text-white transition-colors">Careers</a></li>
+                                    <li><a href="#" class="text-brand-gray-300/70 hover:text-white transition-colors">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-4">Resources</h4>
+                                <ul class="space-y-3">
+                                    <li><a href="#" class="text-brand-gray-300/70 hover:text-white transition-colors">Support Center</a></li>
+                                    <li><a href="#faq" class="text-brand-gray-300/70 hover:text-white transition-colors">FAQ</a></li>
+                                    <li><a href="#" class="text-brand-gray-300/70 hover:text-white transition-colors">Credit Education</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-4">Legal</h4>
+                                <ul class="space-y-3">
+                                    <li><a href="#" class="text-brand-gray-300/70 hover:text-white transition-colors">Terms of Service</a></li>
+                                    <li><a href="#" class="text-brand-gray-300/70 hover:text-white transition-colors">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-16 pt-8 border-t border-gray-700 text-center text-brand-gray-300/50 text-sm">
+                            <p>&copy; 2025 CreditGuard. All rights reserved.</p>
+                        </div>
+                    </div>
+                </footer>
+            </main>
+        </div>
+
+        <script>
+            // Initialize AOS (Animate On Scroll)
+            document.addEventListener('DOMContentLoaded', function() {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    offset: 100
+                });
+            });
+
+            // Mobile Menu Toggle
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+
+                if (mobileMenuBtn && mobileMenu) {
+                    mobileMenuBtn.addEventListener('click', function() {
+                        mobileMenu.classList.toggle('hidden');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        if (icon) {
+                            icon.classList.toggle('fa-bars');
+                            icon.classList.toggle('fa-times');
+                        }
+                    });
+
+                    // Close mobile menu when clicking on a link
+                    const mobileLinks = mobileMenu.querySelectorAll('a');
+                    mobileLinks.forEach(link => {
+                        link.addEventListener('click', function() {
+                            mobileMenu.classList.add('hidden');
+                            const icon = mobileMenuBtn.querySelector('i');
+                            if (icon) {
+                                icon.classList.remove('fa-times');
+                                icon.classList.add('fa-bars');
+                            }
+                        });
+                    });
+                }
+            });
+
+            // FAQ Accordion
+            document.addEventListener('DOMContentLoaded', function() {
+                const faqQuestions = document.querySelectorAll('.faq-question');
+
+                faqQuestions.forEach(question => {
+                    question.addEventListener('click', function() {
+                        const answer = this.nextElementSibling;
+                        const icon = this.querySelector('i');
+
+                        // Close all other answers
+                        document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+                            if (otherAnswer !== answer) {
+                                otherAnswer.classList.add('hidden');
+                                const otherIcon = otherAnswer.previousElementSibling.querySelector('i');
+                                if (otherIcon) {
+                                    otherIcon.classList.remove('fa-chevron-up');
+                                    otherIcon.classList.add('fa-chevron-down');
+                                }
+                            }
+                        });
+
+                        // Toggle current answer
+                        answer.classList.toggle('hidden');
+                        if (icon) {
+                            icon.classList.toggle('fa-chevron-down');
+                            icon.classList.toggle('fa-chevron-up');
+                        }
+                    });
+                });
+            });
+
+            // Testimonials Carousel
+            document.addEventListener('DOMContentLoaded', function() {
+                const track = document.getElementById('testimonials-track');
+                const prevBtn = document.getElementById('prev-testimonial');
+                const nextBtn = document.getElementById('next-testimonial');
+                const dots = document.querySelectorAll('.testimonial-dot');
+                const totalSlides = 6;
+                let currentSlide = 0;
+
+                function updateCarousel() {
+                    const offset = -currentSlide * 100;
+                    track.style.transform = `translateX(${offset}%)`;
+
+                    // Update dots
+                    dots.forEach((dot, index) => {
+                        if (index === currentSlide) {
+                            dot.classList.remove('bg-gray-300');
+                            dot.classList.add('bg-brand-purple');
+                        } else {
+                            dot.classList.remove('bg-brand-purple');
+                            dot.classList.add('bg-gray-300');
+                        }
+                    });
+                }
+
+                nextBtn.addEventListener('click', function() {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateCarousel();
+                });
+
+                prevBtn.addEventListener('click', function() {
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    updateCarousel();
+                });
+
+                // Dot navigation
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', function() {
+                        currentSlide = index;
+                        updateCarousel();
+                    });
+                });
+
+                // Auto-play (optional - every 5 seconds)
+                setInterval(function() {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateCarousel();
+                }, 5000);
+
+                // Touch/swipe support for mobile
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                track.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+
+                track.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, false);
+
+                function handleSwipe() {
+                    if (touchEndX < touchStartX - 50) {
+                        // Swiped left
+                        currentSlide = (currentSlide + 1) % totalSlides;
+                        updateCarousel();
+                    }
+                    if (touchEndX > touchStartX + 50) {
+                        // Swiped right
+                        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                        updateCarousel();
+                    }
+                }
+            });
+
+            // Plotly Chart for Score Prediction
+            window.addEventListener('load', function() {
+                try {
+                    // Get current month and next 6 months
+                    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    const today = new Date();
+                    const months = [];
+                    for (let i = 0; i < 7; i++) {
+                        const monthDate = new Date(today.getFullYear(), today.getMonth() + i, 1);
+                        months.push(monthNames[monthDate.getMonth()]);
+                    }
+
+                    const currentTrend = [742, 740, 745, 743, 748, 750, 752];
+                    const predictedTrend = [742, 752, 763, 774, 783, 791, 799];
+
+                    const trace1 = {
+                        x: months,
+                        y: currentTrend,
+                        mode: 'lines+markers',
+                        name: 'Current Path',
+                        type: 'scatter',
+                        line: {
+                            color: '#B0B8C7',
+                            width: 2,
+                            dash: 'dot'
+                        },
+                        marker: {
+                            color: '#B0B8C7',
+                            size: 6
+                        }
+                    };
+
+                    const trace2 = {
+                        x: months,
+                        y: predictedTrend,
+                        mode: 'lines+markers',
+                        name: 'With Smart Actions',
+                        type: 'scatter',
+                        line: {
+                            color: '#10B981',
+                            width: 3
+                        },
+                        marker: {
+                            color: '#10B981',
+                            size: 8
+                        },
+                        fill: 'tonexty',
+                        fillcolor: 'rgba(16, 185, 129, 0.1)'
+                    };
+
+                    const data = [trace1, trace2];
+
+                    // Responsive margins based on screen size
+                    const isMobile = window.innerWidth < 640;
+                    const margins = isMobile
+                        ? { t: 10, r: 10, b: 70, l: 45 }
+                        : { t: 20, r: 20, b: 80, l: 50 };
+
+                    const layout = {
+                        xaxis: {
+                            gridcolor: '#E8ECF2',
+                            zeroline: false,
+                            tickfont: {
+                                size: isMobile ? 9 : 12
+                            },
+                            tickangle: isMobile ? -45 : 0
+                        },
+                        yaxis: {
+                            title: isMobile ? '' : 'Credit Score',
+                            range: [720, 820],
+                            gridcolor: '#E8ECF2',
+                            zeroline: false,
+                            tickfont: {
+                                size: isMobile ? 10 : 12
+                            }
+                        },
+                        legend: {
+                            y: -0.3,
+                            x: 0.5,
+                            xanchor: 'center',
+                            orientation: 'h',
+                            font: {
+                                size: isMobile ? 10 : 12
+                            }
+                        },
+                        margin: margins,
+                        plot_bgcolor: 'white',
+                        paper_bgcolor: 'white',
+                        font: {
+                            family: 'Inter, sans-serif',
+                            color: '#6E7A91',
+                            size: isMobile ? 11 : 12
+                        },
+                        autosize: true
+                    };
+
+                    const config = {
+                        responsive: true,
+                        displayModeBar: false,
+                        displaylogo: false
+                    };
+
+                    Plotly.newPlot('score-chart', data, layout, config);
+                } catch (e) {
+                    console.error("Chart rendering failed:", e);
+                    document.getElementById('score-chart').innerHTML = '<div class="text-center p-8 bg-red-100 text-red-700 rounded-lg">Error: Could not load interactive chart.</div>';
+                }
+            });
+        </script>
+    </body>
+</html>
